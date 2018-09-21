@@ -1,0 +1,168 @@
+﻿@using Deli.ViewModels
+@model OrderForm
+
+
+<div>
+    <img src="~/images/banner3.0.jpeg" alt="" class="img-fluid" />
+
+</div>
+
+<div style="background-color: #c1c7d3" class="px-2 pb-2">
+    <form asp-controller="Order" asp-action="AddSelectionToOrder" method="post">
+        <div class="row justify-content-around">
+            <div class="form-group col-4 mt-3">
+                <select asp-for="item.ItemType.ItemTypeName" class="px-5 py-1 form-group rounded" style="color:aliceblue; background-color: #6b8278" onchange="menuSelection();">
+                    <option selected>Make a Seletion</option>
+                    @foreach (ItemType itemType in Model.itemTypes)
+                    {
+                        <option class="dropdown-item">@itemType.ItemTypeName</option>
+                        <option hidden>@itemType.ItemTypeId</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div id="Salad" style="display: none">
+            <div class="row justify-content-around">
+                <select asp-for="Lettuce" asp-items="Model.LettuceOptions" class="px-5 py-1 form-group rounded" style="color:aliceblue; background-color: #6b8278">
+                    <option selected="selected">Select Your Lettuce</option>
+                </select>
+                <select asp-for="Dressing" asp-items="Model.Dressings" class="px-5 py-1 form-group rounded" style="color:aliceblue; background-color: #6b8278">
+                    <option selected="selected">Select Your Dressing</option>
+                </select>
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <p>Meat Selections</p>
+                    @for (var i = 0; i < Model.SaladMeat.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SaladMeat[i].Selected" />
+                            <label asp-for="SaladMeat[i].Selected">@Model.SaladMeat[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your veggies</h5>
+                    @for (var i = 0; i < Model.SaladVeggies.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SaladVeggies[i].Selected" />
+                            <label asp-for="SaladVeggies[i].Selected">@Model.SaladVeggies[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your cheese</h5>
+                    @for (var i = 0; i < Model.SaladCheese.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SaladCheese[i].Selected" />
+                            <label asp-for="SaladCheese[i].Selected">@Model.SaladCheese[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your extras</h5>
+                    @for (var i = 0; i < Model.SaladExtras.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SaladExtras[i].Selected" />
+                            <label asp-for="SaladExtras[i].Selected">@Model.SaladExtras[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <button type="submit">Add Selection to order</button>
+
+        </div>
+
+
+
+        <div class="row" id="Sandwich" style="display: none">
+            <div class="row justify-content-around">
+                <select asp-for="Bread" asp-items="Model.BreadOptions" class="px-5 py-1 form-group rounded" style="color:aliceblue; background-color: #6b8278">
+                    <option selected="selected">Select Your Bread</option>
+                </select>
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <p>Meat Selections</p>
+                    @for (var i = 0; i < Model.SandwichMeat.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SandwichMeat[i].Selected" />
+                            <label asp-for="SandwichMeat[i].Selected">@Model.SandwichMeat[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your veggies</h5>
+                    @for (var i = 0; i < Model.SandwichVeggies.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SandwichVeggies[i].Selected" />
+                            <label asp-for="SandwichVeggies[i].Selected">@Model.SandwichVeggies[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your cheese</h5>
+                    @for (var i = 0; i < Model.SandwichCheese.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="SandwichCheese[i].Selected" />
+                            <label asp-for="SandwichCheese[i].Selected">@Model.SandwichCheese[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+                <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
+                    <h5>Select your extras</h5>
+                    @for (var i = 0; i < Model.Condiment.Count(); i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" asp-for="Condiment[i].Selected" />
+                            <label asp-for="Condiment[i].Selected">@Model.Condiment[i].IngredientName</label>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <button type="submit">Add Selection to order</button>
+
+        </div>
+
+    </form>
+</div>
+
+<script type="text/javascript">
+    function menuSelection() {
+
+        Selection = document.getElementById("item_ItemType_ItemTypeName").value;
+            if (Selection === "Salad") {
+                document.getElementById("Salad").style.display = "block";
+                document.getElementById("Sandwich").style.display = "none";
+            }
+            else {
+                document.getElementById("Salad").style.display = "none";
+                document.getElementById("Sandwich").style.display = "block";
+            }
+    }
+
+    function ingredientSelection(_id, ingredient) {
+
+        document.getElementById(_id).value = ingredient;
+    }
+
+
+</script>
+
+
+
+

@@ -8,9 +8,31 @@ namespace Deli.Models
 {
     public class User
     {
+        public User() { }
+
+        public User(User user)
+        {
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            EmailAddress = user.EmailAddress;
+            PhoneNumber = user.PhoneNumber;
+            Address = user.Address;
+            City = user.City;
+            State = user.State;
+            Zip = user.Zip;
+            UserName = user.UserName;
+            Password = user.Password;
+            PaymentType = user.PaymentType;
+            CardType = user.CardType;
+            CardNumber = user.CardNumber;
+            ExpDate = user.ExpDate;
+            CVC = user.CVC;
+        }
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }

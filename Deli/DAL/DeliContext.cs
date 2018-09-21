@@ -17,5 +17,8 @@ namespace Deli.DAL
         public DbSet<Order> Orders { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<ItemType> ItemTypes { get; set; }
+        public DbSet<IngredientType> IngredientTypes { get; set; }
+        public DbSet<Item_Ingredient> Item_Ingredients { get; set; }
     }
 }

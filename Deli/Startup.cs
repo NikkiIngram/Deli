@@ -39,6 +39,7 @@ namespace Deli
             var connection = @"Server=(localdb)\MSSQLLocalDB; Database=Deli;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<DeliContext>
                 (options => options.UseSqlServer(connection));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
