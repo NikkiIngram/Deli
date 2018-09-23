@@ -2,16 +2,17 @@
 @model OrderForm
 
 
-<form asp-controller="Order" asp-action="PlaceAddlOrder" method="post">
+@*<form asp-controller="Order" asp-action="PlaceAddlOrder" method="post">
     <div id="reviewOrder">
         <h4 class="m-5">Please review your order below</h4>
         <div class="m-5">
-            @*<button type="submit" class="btn btn-primary">Add additional item to order</button>*@
+            <input type="hidden" asp-for="order.OrderId" />
+            <button type="submit" class="btn btn-primary">Add additional item to order</button>
             <button type="button" class="btn btn-primary" onclick="PlaceOrder();">Place Order</button>
         </div>
         </div>
-</form>
-<div id="receipt" style="display: none">
+</form>*@
+<div id="receipt" @*style="display: none"*@>
     <h4>Thank you for your order. Have a great day!</h4>
 </div>
 

@@ -96,26 +96,30 @@ namespace Deli.Controllers
         {
             if(_order.item.ItemType.ItemTypeName == "Salad")
             {
-                Item item = new Item() { OrderId = _orderId, ItemTypeId = 1};
+                Item item = new Item() { OrderId = _order.order.OrderId, ItemTypeId = 1};
                 _context.Items.Add(item);
+                _context.SaveChanges();
+                _order.Lettuce = _order.Lettuce == "Select Your Lettuce" ? "29" : _order.Lettuce;
+                _order.Dressing = _order.Dressing == "Select Your Dressing" ? "23" : _order.Dressing;
+
                 List<Item_Ingredient> ingredients = new List<Item_Ingredient>()
                 {
                     new Item_Ingredient(){ItemId = item.ItemId, IngredientId = Convert.ToInt32(_order.Lettuce) },
                     new Item_Ingredient(){ItemId = item.ItemId, IngredientId = Convert.ToInt32(_order.Dressing)},
                 };
-                    foreach(Ingredient meat in _order.SaladMeat.Where(x => x.Selected = true))
+                    foreach(Ingredient meat in _order.SaladMeat.Where(x => x.Selected == true))
                 {
                     ingredients.Add( new Item_Ingredient() { ItemId = item.ItemId, IngredientId = meat.IngredientId });
                 }
-                foreach (Ingredient veggie in _order.SaladVeggies.Where(x => x.Selected = true))
+                foreach (Ingredient veggie in _order.SaladVeggies.Where(x => x.Selected == true))
                 {
                     ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = veggie.IngredientId });
                 }
-                foreach (Ingredient cheese in _order.SaladCheese.Where(x => x.Selected = true))
+                foreach (Ingredient cheese in _order.SaladCheese.Where(x => x.Selected == true))
                 {
                     ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = cheese.IngredientId });
                 }
-                foreach (Ingredient extra in _order.SaladExtras.Where(x => x.Selected = true))
+                foreach (Ingredient extra in _order.SaladExtras.Where(x => x.Selected == true))
                 {
                     ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = extra.IngredientId });
                 }
@@ -127,9 +131,40 @@ namespace Deli.Controllers
             }
             else if(_order.item.ItemType.ItemTypeName == "Sandwich")
             {
+                Item item = new Item() { OrderId = _order.order.OrderId, ItemTypeId = 2 };
+                _context.Items.Add(item);
+                _context.SaveChanges();
+
+                _order.Bread = _order.Bread == "Select Your Bread" ? "3" : _order.Bread;
+
+                List<Item_Ingredient> ingredients = new List<Item_Ingredient>()
+                {
+                    new Item_Ingredient(){ItemId = item.ItemId, IngredientId = Convert.ToInt32(_order.Bread) },
+                };
+                foreach (Ingredient meat in _order.SandwichMeat.Where(x => x.Selected == true))
+                {
+                    ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = meat.IngredientId });
+                }
+                foreach (Ingredient veggie in _order.SandwichVeggies.Where(x => x.Selected == true))
+                {
+                    ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = veggie.IngredientId });
+                }
+                foreach (Ingredient cheese in _order.SandwichCheese.Where(x => x.Selected == true))
+                {
+                    ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = cheese.IngredientId });
+                }
+                foreach (Ingredient extra in _order.Condiment.Where(x => x.Selected == true))
+                {
+                    ingredients.Add(new Item_Ingredient() { ItemId = item.ItemId, IngredientId = extra.IngredientId });
+                }
+                foreach (Item_Ingredient ingredient in ingredients)
+                {
+                    _context.Item_Ingredients.Add(ingredient);
+                }
+                _context.SaveChanges();
 
             }
-            
+
             Console.Write("oh yea!");
             return RedirectToAction("CheckOut", _order);
         }
@@ -142,7 +177,7 @@ namespace Deli.Controllers
 
         //public IActionResult PlaceAddlOrder(OrderForm _order)
         //{
-        //    return RedirectToAction();
+        //    return View("Index", _order);
         //}
     }
 }

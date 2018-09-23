@@ -21,6 +21,7 @@
                 </select>
             </div>
         </div>
+        <input hidden asp-for="order.OrderId" />
         <div id="Salad" style="display: none">
             <div class="row justify-content-around">
                 <select asp-for="Lettuce" asp-items="Model.LettuceOptions" class="px-5 py-1 form-group rounded" style="color:aliceblue; background-color: #6b8278">
@@ -37,8 +38,9 @@
                     @for (var i = 0; i < Model.SaladMeat.Count(); i++)
                     {
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SaladMeat[i].Selected" />
-                            <label asp-for="SaladMeat[i].Selected">@Model.SaladMeat[i].IngredientName</label>
+                            <input type="checkbox" asp-for="SaladMeat[i].Selected" />
+                            <input type="hidden" asp-for="SaladMeat[i].IngredientId" />
+                            <label asp-for="SaladMeat[i].IngredientName">@Model.SaladMeat[i].IngredientName</label>
                         </div>
                     }
                 </div>
@@ -46,10 +48,11 @@
                     <h5>Select your veggies</h5>
                     @for (var i = 0; i < Model.SaladVeggies.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SaladVeggies[i].Selected" />
-                            <label asp-for="SaladVeggies[i].Selected">@Model.SaladVeggies[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SaladVeggies[i].Selected" />
+                        <input type="hidden" asp-for="SaladVeggies[i].IngredientId" />
+                        <label asp-for="SaladVeggies[i].Selected">@Model.SaladVeggies[i].IngredientName</label>
+                    </div>
                     }
                 </div>
             </div>
@@ -58,20 +61,22 @@
                     <h5>Select your cheese</h5>
                     @for (var i = 0; i < Model.SaladCheese.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SaladCheese[i].Selected" />
-                            <label asp-for="SaladCheese[i].Selected">@Model.SaladCheese[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SaladCheese[i].Selected" />
+                        <input type="hidden" asp-for="SaladCheese[i].IngredientId" />
+                        <label asp-for="SaladCheese[i].Selected">@Model.SaladCheese[i].IngredientName</label>
+                    </div>
                     }
                 </div>
                 <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
                     <h5>Select your extras</h5>
                     @for (var i = 0; i < Model.SaladExtras.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SaladExtras[i].Selected" />
-                            <label asp-for="SaladExtras[i].Selected">@Model.SaladExtras[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SaladExtras[i].Selected" />
+                        <input type="hidden" asp-for="SaladExtras[i].IngredientId" />
+                        <label asp-for="SaladExtras[i].Selected">@Model.SaladExtras[i].IngredientName</label>
+                    </div>
                     }
                 </div>
 
@@ -94,20 +99,22 @@
                     <p>Meat Selections</p>
                     @for (var i = 0; i < Model.SandwichMeat.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SandwichMeat[i].Selected" />
-                            <label asp-for="SandwichMeat[i].Selected">@Model.SandwichMeat[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SandwichMeat[i].Selected" />
+                        <input type="hidden" asp-for="SandwichMeat[i].IngredientId" />
+                        <label asp-for="SandwichMeat[i].Selected">@Model.SandwichMeat[i].IngredientName</label>
+                    </div>
                     }
                 </div>
                 <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
                     <h5>Select your veggies</h5>
                     @for (var i = 0; i < Model.SandwichVeggies.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SandwichVeggies[i].Selected" />
-                            <label asp-for="SandwichVeggies[i].Selected">@Model.SandwichVeggies[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SandwichVeggies[i].Selected" />
+                        <input type="hidden" asp-for="SandwichVeggies[i].IngredientId" />
+                        <label asp-for="SandwichVeggies[i].Selected">@Model.SandwichVeggies[i].IngredientName</label>
+                    </div>
                     }
                 </div>
             </div>
@@ -116,20 +123,22 @@
                     <h5>Select your cheese</h5>
                     @for (var i = 0; i < Model.SandwichCheese.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="SandwichCheese[i].Selected" />
-                            <label asp-for="SandwichCheese[i].Selected">@Model.SandwichCheese[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="SandwichCheese[i].Selected" />
+                        <input type="hidden" asp-for="SandwichCheese[i].IngredientId" />
+                        <label asp-for="SandwichCheese[i].Selected">@Model.SandwichCheese[i].IngredientName</label>
+                    </div>
                     }
                 </div>
                 <div class="form-group col rounded mx-5" style="color:aliceblue; background-color: #4a5f7a">
                     <h5>Select your extras</h5>
                     @for (var i = 0; i < Model.Condiment.Count(); i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" asp-for="Condiment[i].Selected" />
-                            <label asp-for="Condiment[i].Selected">@Model.Condiment[i].IngredientName</label>
-                        </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="Condiment[i].Selected" />
+                        <input type="hidden" asp-for="Condiment[i].IngredientId" />
+                        <label asp-for="Condiment[i].Selected">@Model.Condiment[i].IngredientName</label>
+                    </div>
                     }
                 </div>
 

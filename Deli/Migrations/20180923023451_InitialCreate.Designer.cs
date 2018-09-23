@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Deli.Migrations
 {
     [DbContext(typeof(DeliContext))]
-    [Migration("20180921163536_InitialCreate")]
+    [Migration("20180923023451_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
